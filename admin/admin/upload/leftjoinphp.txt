@@ -1,0 +1,18 @@
+
+LEFT JOIN in php
+
+<?php 
+              
+$query12 = "SELECT DISTINCT whs_msg.number, whs_msg.name, whs_msg.msg, whs_msg.createdat,function_reservation.event 
+
+           FROM whs_msg 
+           LEFT JOIN function_reservation ON whs_msg.cpi_id = function_reservation.cid";
+
+
+           $sql13 = mysqli_query($conn,$query12);
+
+           $count98 = mysqli_num_rows($sql13);
+
+
+?>
+public_html/SAVARI/thewedlounge.com/testing.wedlounge.com
