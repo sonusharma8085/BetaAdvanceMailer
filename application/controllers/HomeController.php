@@ -17,8 +17,6 @@ class HomeController extends CI_Controller {
         $data['subjects'] = $this->Compaignmodel->getSubject($userid);
         $data['bodyline'] = $this->Compaignmodel->getBodyline($userid);
         $data['attch'] = $this->Compaignmodel->getAttechment($userid);
-      //  print_r($data['smtp']);die();
-        // print_r($data['jkjl']['unseen']['0']['unseen']);die();
         $data['mailSeen'] = $data['jkjl']['seen'][0]['seen'];
         $data['mailUnSeen'] = $data['jkjl']['unseen']['0']['unseen'];
         
