@@ -28,7 +28,7 @@ class LoginController extends CI_Controller {
             $contractDateBegin = date('Y-m-d', strtotime($logincount[0]['formdate']));
             $contractDateEnd = date('Y-m-d', strtotime($logincount[0]['todate']));
     
-            if(($curentDate <= $contractDateEnd && $logincount[0]['approval'] == 1)){
+            if(($logincount[0]['approval'] == 1)){
                // echo "is between";
                 $this->session->set_userdata('id',$adminid);
                 $this->session->set_userdata('name',$adminname);

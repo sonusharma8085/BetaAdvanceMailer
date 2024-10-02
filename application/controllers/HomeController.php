@@ -4,9 +4,11 @@ class HomeController extends CI_Controller {
 
     public function index()
     {   
+
         $this->load->model('Compaignmodel');
         $userid = $this->session->userdata('id');
         $data['grafh'] = $this->Compaignmodel->getGrafData($userid);
+        echo "f";die;
         $data['jkjl'] = $this->Compaignmodel->getmailTracking($userid);
         $data['smtp'] = $this->Compaignmodel->getSmtp($userid);
         $data['html'] = $this->Compaignmodel->getHtml($userid);
