@@ -103,7 +103,6 @@ class CompaignController extends CI_Controller {
        
 
        
-
         $this->load->library('PHPMailer_Lib');
         // PHPMailer object
         $success = 1;
@@ -119,8 +118,8 @@ class CompaignController extends CI_Controller {
         $skipTime = $this->input->post('skipTime');
         $pro = 0;
         for($sm = 0; $sm < count($recipient); $sm++){
-           
-
+            
+            
             try {
                 $pageData['k'] = $g;
                 $pageData['fremail'] =  $smtp[$a]->username;
@@ -142,20 +141,22 @@ class CompaignController extends CI_Controller {
                 $mail->Port     = $smtp[$a]->port;
                 $mail->SMTPSecure = 'tls';
                 $track_code = md5(rand());
-                // print_r($mailSatus);
+                // print_r($mailSatus);die;
+                // print_r($mail);?die;
+                
                 try {
                     $validCredentials = $mail->SmtpConnect();
-                  //  print_r("workign smtp" . $a."</br>");
                 }
                 catch(Exception $error) { //Returning False is  NOT an Exception.
-                    //print_r("not working smtp ".$a."</br>");
+                    echo $error;die;
+                    print_r("not working smtp ".$a."</br>");
                     $status = 0;
                     $this->saveHistory($status,$smtp[$a]->username,$recipient[$sm]->recipient,$subjects[$c]->subject,$track_code);
                     $a++;
                     $faild++;
                     continue;
                 }
-
+                echo "aftertry catch";die;
                 $mail->setFrom($smtp[$a]->username, $sender[$b]->sendername);
                 $mail->Subject = $subjects[$c]->subject;
                 $mail->addAddress($recipient[$sm]->recipient);
@@ -223,7 +224,7 @@ class CompaignController extends CI_Controller {
             
                 $mail->isHTML(true);
                 $mail->SMTPDebug = 1;
-                //   print_r($mail);die();
+                  print_r($mail);die();
 
                 if(!$mail->send()){
                     continue;
@@ -233,6 +234,7 @@ class CompaignController extends CI_Controller {
                     $status = 1;
                     $this->session->set_flashdata('success',$success++ . ' Mail Successfully Send!');
                     $this->session->set_flashdata('error',$faild . ' Mail Sending Error!');
+                    echo "ff";die;
                 }        
                 // if(isset($skipTime)){
                 //     sleep($skipTime);

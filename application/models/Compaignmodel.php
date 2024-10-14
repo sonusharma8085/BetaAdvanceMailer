@@ -83,10 +83,10 @@ class Compaignmodel extends CI_Model {
     
     public function getmailTracking(){
         //  unseen
-         $live =  $this->db->query("SELECT count(*) as unseen from mail_history WHERE emaistatus='0'");
+         $live =  $this->db->query("SELECT count(*) as unseen from mail_history WHERE emailstatus='0'");
          $unseen = $live->result_array();
         //  seen
-         $live =  $this->db->query("SELECT count(*) as seen from mail_history WHERE emaistatus='1'");
+         $live =  $this->db->query("SELECT count(*) as seen from mail_history WHERE emailstatus='1'");
          $seen = $live->result_array();
          
          $resArr = ['seen'=>$seen,'unseen'=>$unseen];
